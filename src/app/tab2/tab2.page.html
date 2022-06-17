@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Urna Eletrônica
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+  <ion-label position="floating">Digite o número do candidato</ion-label>
+  <ion-input class="input-border"  type="tel" maxlength="4" [(ngModel)]="searchCandidates" animated required></ion-input>
+  </ion-item>
+  <ion-button color="medium" (click)="inputBlank()" value="0">
+    BRANCO
+  </ion-button>
+  <ion-button color="warning" (click)="clearSearch()">
+    CORRIGE
+  </ion-button>
+  <ion-button color="success" class="button" (click)="calculateVotes()">
+     CONFIRMA
+  </ion-button>
+
+  <ion-card *ngFor="let candidate of candidates | filter:searchCandidates">
+    <ion-img src="{{candidate.image}}"> </ion-img>
+    <ion-card-header>
+      <ion-card-title>{{candidate.name}}</ion-card-title>
+      <ion-button color="success">{{candidate.number}}</ion-button>
+    </ion-card-header>
+  </ion-card>
+
+  <h3 class="text-center">RESULTADO PARCIAL</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label> Total de votos apurados: {{count}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> João Soares: {{candidate1}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Jorge Amaral: {{candidate2}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Sandra Marins: {{candidate3}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
